@@ -3,6 +3,7 @@
 \usepackage{amssymb, amsmath}
 \usepackage{bm}
 \usepackage[dvipdfmx]{graphicx}
+\usepackage{here}
 
 \newcommand{\pfrac}[2]{\frac{\partial{}{#1}}{\partial{}{#2}}}
 
@@ -32,7 +33,7 @@
   &流入:\rho{}u|_{x}dydzdt\label{xin}\\
   &流出:\rho{}u|_{x+dx}dydzdt\label{xout}
 \end{align}
-となり，式(\ref{xout})に関してテイラー展開，一次までを考えると，
+となり，式(\ref{xout})に関してテイラー展開し，第一項までを考えると，
 \begin{equation}
   \left[\rho{}u+\pfrac{(\rho{}u)}{x}dx\right]dydzdt\label{xouttaylor}
 \end{equation}
@@ -66,7 +67,7 @@
 先ほど導出した連続の式は直交座標系におけるものだった．次は円筒座標系$(r, \theta, z)$における連続の式を導出してみよう．この場合もとても小さな領域を考えればよい．
 
 まず，任意の円筒の中心から$r$の位置に図\ref{entou}のような微小な領域を取る．
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\columnwidth]{entou.pdf}
   \caption{円筒座標系における微小領域}
@@ -89,9 +90,23 @@
 \end{equation}
 同様に$\theta{}$，$z$方向についても計算し，
 \begin{align}
-  &-\pfrac{(\rho{}V_rr)}{r}drd\theta{}dzdt\\
-  &-\pfrac{(\rho{}V_\theta{})}{\theta{}}drd\theta{}dzdt\\
-  &-\pfrac{(\rho{}V_z)}{r}rdrd\theta{}dzdt
+  &-\pfrac{(\rho{}V_rr)}{r}drd\theta{}dzdt\label{pvr}\\
+  &-\pfrac{(\rho{}V_\theta{})}{\theta{}}drd\theta{}dzdt\label{pvtheta}\\
+  &-\pfrac{(\rho{}V_z)}{r}rdrd\theta{}dzdt\label{pvz}
 \end{align}
+がそれぞれ得られる．
 
+さて，式(\ref{pvr})$\sim$(\ref{pvz})の総和はこの領域内の質量変化に等しく，その量は密度変化と体積の積で表せるので，
+\begin{equation}
+  \pfrac{\rho{}}{t}rdrd\theta{}dzdt
+\end{equation}
+となり，これらより
+\begin{equation}
+  \pfrac{\rho{}}{t}rdrd\theta{}dzdt=-\pfrac{(\rho{}V_rr)}{r}drd\theta{}dzdt-\pfrac{(\rho{}V_\theta{})}{\theta{}}drd\theta{}dzdt-\pfrac{(\rho{}V_z)}{r}rdrd\theta{}dzdt
+\end{equation}
+となり，これを整理して
+\begin{equation}
+  \pfrac{\rho{}}{t}+\frac{1}{r}\pfrac{(\rho{}V_rr)}{r}+\frac{1}{r}\pfrac{(\rho{}V_\theta{})}{\theta{}}+\pfrac{(\rho{}V_z)}{z}=0
+\end{equation}
+という円筒座標系における連続の式が得られた．この式は軸対象な現象を取り扱う際にその力を発揮する．
 \end{document}
