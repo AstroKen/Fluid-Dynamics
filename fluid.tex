@@ -1,6 +1,7 @@
 \documentclass{jsarticle}
 \usepackage[top=30truemm, bottom=30truemm, left=25truemm, right=25truemm]{geometry}
 \usepackage{amssymb, amsmath}
+\usepackage{bm}
 
 \newcommand{\pfrac}[2]{\frac{\partial{}{#1}}{\partial{}{#2}}}
 
@@ -15,6 +16,35 @@
 \section{連続の式}
 これから登場する様々な式の中で，流体に対して最も強い拘束条件を与えるのが連続の式である．この式は「流体は突然動き出さない」ということを意味する．早速この数式を見てみよう．
 \begin{equation}
-\pfrac{\rho}{t}+\pfrac{\rho{}u}{x}+\pfrac{\rho{}v}{y}+\pfrac{\rho{}w}{z}
+  \pfrac{\rho}{t}+\pfrac{\rho{}u}{x}+\pfrac{\rho{}v}{y}+\pfrac{\rho{}w}{z}=0
 \end{equation}
+これをベクトル演算子を使って書いてみると，
+\begin{equation}
+  \pfrac{\rho}{t}+\mathrm{div}(\rho\bm{V})
+\end{equation}
+となる．この数式は，密度変化と質量変化の総和は常にゼロに等しいことを意味する．ではどのようにこの数式が導出されるのかを次に述べる．
+\subsection{連続の式の導出: 直交座標系の場合}
+とても小さな立方体を考えよう．一辺の長さが$\mathrm{dx}$，$\mathrm{dy}$，$\mathrm{dz}$の立方体のそれぞれの面に流入，流出する流体の質量を考える．
+
+まず$x$軸に垂直な面に$x$軸方向の流れが流入，流出するとき，
+\begin{align}
+  &流入:\rho{}u|_{x}dydzdt\label{xin}\\
+  &流出:\rho{}u|_{x+dx}dydzdt\label{xout}
+\end{align}
+となり，式(\ref{xout})に関してテイラー展開，一次までを考えると，
+\begin{equation}
+  \left[\rho{}u+\pfrac{(\rho{}u)}{x}\right]dydzdt\label{xouttaylor}
+\end{equation}
+となり，ここで流入と流出の差，つまり式(\ref{xin})と式(\ref{xouttaylor})の差を取れば，
+\begin{equation}
+  -\pfrac{(\rho{}u)}{x}dydzdt
+\end{equation}
+を得る．これを$y$に垂直な面，$z$に垂直な面についてそれぞれ考えると，
+\begin{align}
+  &-\pfrac{(\rho{}u)}{x}dydzdt\\
+  &-\pfrac{(\rho{}v)}{y}dydzdt\\
+  &-\pfrac{(\rho{}w)}{z}dydzdt
+\end{align}
+がそれぞれ得られる
+
 \end{document}
