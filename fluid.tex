@@ -16,7 +16,7 @@
 \section{連続の式}
 これから登場する様々な式の中で，流体に対して最も強い拘束条件を与えるのが連続の式である．この式は「流体は突然動き出さない」ということを意味する．早速この数式を見てみよう．
 \begin{equation}
-  \pfrac{\rho}{t}+\pfrac{\rho{}u}{x}+\pfrac{\rho{}v}{y}+\pfrac{\rho{}w}{z}=0
+  \pfrac{\rho}{t}+\pfrac{(\rho{}u)}{x}+\pfrac{(\rho{}v)}{y}+\pfrac{(\rho{}w)}{z}=0
 \end{equation}
 これをベクトル演算子を使って書いてみると，
 \begin{equation}
@@ -33,7 +33,7 @@
 \end{align}
 となり，式(\ref{xout})に関してテイラー展開，一次までを考えると，
 \begin{equation}
-  \left[\rho{}u+\pfrac{(\rho{}u)}{x}\right]dydzdt\label{xouttaylor}
+  \left[\rho{}u+\pfrac{(\rho{}u)}{x}dx\right]dydzdt\label{xouttaylor}
 \end{equation}
 となり，ここで流入と流出の差，つまり式(\ref{xin})と式(\ref{xouttaylor})の差を取れば，
 \begin{equation}
@@ -41,10 +41,23 @@
 \end{equation}
 を得る．これを$y$に垂直な面，$z$に垂直な面についてそれぞれ考えると，
 \begin{align}
-  &-\pfrac{(\rho{}u)}{x}dydzdt\\
-  &-\pfrac{(\rho{}v)}{y}dydzdt\\
-  &-\pfrac{(\rho{}w)}{z}dydzdt
+  &-\pfrac{(\rho{}u)}{x}dxdydzdt\label{pupx}\\
+  &-\pfrac{(\rho{}v)}{y}dxdydzdt\label{pvpy}\\
+  &-\pfrac{(\rho{}w)}{z}dxdydzdt\label{pwpz}
 \end{align}
-がそれぞれ得られる
+がそれぞれ得られる．
 
+さて，式\ref{pupx}$\sim$\ref{pwpz}の総和はこの微小立方体内の密度変化に等しい．ここで微小立方体内の密度変化は
+\begin{equation}
+  \pfrac{\rho}{t}dxdydzdt
+\end{equation}
+である．等式で結ぶと，
+\begin{equation}
+  \pfrac{\rho}{t}dxdydzdt=-\pfrac{(\rho{}u)}{x}dxdydzdt-\pfrac{(\rho{}v)}{y}dxdydzdt-\pfrac{(\rho{}w)}{z}dxdydzdt
+\end{equation}
+であるから，これを整理して，
+\begin{equation}
+  \pfrac{\rho}{t}+\pfrac{(\rho{}u)}{x}+\pfrac{(\rho{}v)}{y}+\pfrac{(\rho{}w)}{z}=0
+\end{equation}
+が得られた．
 \end{document}
