@@ -2,6 +2,7 @@
 \usepackage[top=30truemm, bottom=30truemm, left=25truemm, right=25truemm]{geometry}
 \usepackage{amssymb, amsmath}
 \usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
 
 \newcommand{\pfrac}[2]{\frac{\partial{}{#1}}{\partial{}{#2}}}
 
@@ -22,9 +23,9 @@
 \begin{equation}
   \pfrac{\rho}{t}+\mathrm{div}(\rho\bm{V})
 \end{equation}
-となる．この数式は，密度変化と質量変化の総和は常にゼロに等しいことを意味する．ではどのようにこの数式が導出されるのかを次に述べる．
-\subsection{連続の式の導出: 直交座標系の場合}
-とても小さな立方体を考えよう．一辺の長さが$\mathrm{dx}$，$\mathrm{dy}$，$\mathrm{dz}$の立方体のそれぞれの面に流入，流出する流体の質量を考える．
+となる．ではどのようにこの数式が導出されるのかを次に述べる．
+\subsection{連続の式の導出: 直交座標系の場合}\label{chokou}
+とても小さな直方体を考えよう．一辺の長さが$\mathrm{dx}$，$\mathrm{dy}$，$\mathrm{dz}$の直方体のそれぞれの面に流入，流出する流体の質量を考える．
 
 まず$x$軸に垂直な面に$x$軸方向の流れが流入，流出するとき，
 \begin{align}
@@ -37,7 +38,7 @@
 \end{equation}
 となり，ここで流入と流出の差，つまり式(\ref{xin})と式(\ref{xouttaylor})の差を取れば，
 \begin{equation}
-  -\pfrac{(\rho{}u)}{x}dydzdt
+  -\pfrac{(\rho{}u)}{x}dxdydzdt
 \end{equation}
 を得る．これを$y$に垂直な面，$z$に垂直な面についてそれぞれ考えると，
 \begin{align}
@@ -47,11 +48,11 @@
 \end{align}
 がそれぞれ得られる．
 
-さて，式\ref{pupx}$\sim$\ref{pwpz}の総和はこの微小立方体内の密度変化に等しい．ここで微小立方体内の密度変化は
+さて，式\ref{pupx}$\sim$\ref{pwpz}の総和はこの直方体内の密度変化と体積の積に等しい．ここで直方体内の質量変化は
 \begin{equation}
   \pfrac{\rho}{t}dxdydzdt
 \end{equation}
-である．等式で結ぶと，
+で表される．等式で結ぶと，
 \begin{equation}
   \pfrac{\rho}{t}dxdydzdt=-\pfrac{(\rho{}u)}{x}dxdydzdt-\pfrac{(\rho{}v)}{y}dxdydzdt-\pfrac{(\rho{}w)}{z}dxdydzdt
 \end{equation}
@@ -60,4 +61,37 @@
   \pfrac{\rho}{t}+\pfrac{(\rho{}u)}{x}+\pfrac{(\rho{}v)}{y}+\pfrac{(\rho{}w)}{z}=0
 \end{equation}
 が得られた．
+
+\subsection{連続の式の導出: 円筒座標系の場合}
+先ほど導出した連続の式は直交座標系におけるものだった．次は円筒座標系$(r, \theta, z)$における連続の式を導出してみよう．この場合もとても小さな領域を考えればよい．
+
+まず，任意の円筒の中心から$r$の位置に図\ref{entou}のような微小な領域を取る．
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\columnwidth]{entou.pdf}
+  \caption{円筒座標系における微小領域}
+  \label{entou}
+\end{figure}
+この領域は\ref{chokou}とは異なり，辺の長さが少しだけ異なっている．が，同じように導出に挑戦してみよう．
+
+まず，$r$方向の流体の速度を$V_r$とする．ここで$r$軸に垂直な面に流入，流出する流体の質量は
+\begin{align}
+  &流入: \rho{}V_r|_{r}rd\theta{}dzdt\label{rin}\\
+  &流出: \rho{}V_r|_{r+dr}(r+dr)d\theta{}dzdt\label{rout}
+\end{align}
+式(\ref{rout})についてテイラー展開し，第一項まで取れば
+\begin{equation}
+  \left[\rho{}V_rr+\pfrac{(\rho{}V_rr)}{r}dr\right]d\theta{}dzdt
+\end{equation}
+式(\ref{rin})との差を取り，
+\begin{equation}
+  -\pfrac{(\rho{}V_rr)}{r}drd\theta{}dzdt
+\end{equation}
+同様に$\theta{}$，$z$方向についても計算し，
+\begin{align}
+  &-\pfrac{(\rho{}V_rr)}{r}drd\theta{}dzdt\\
+  &-\pfrac{(\rho{}V_\theta{})}{\theta{}}drd\theta{}dzdt\\
+  &-\pfrac{(\rho{}V_z)}{r}rdrd\theta{}dzdt
+\end{align}
+
 \end{document}
